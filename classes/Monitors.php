@@ -1,5 +1,7 @@
 <?php
 
+require_once('slack/bot.php');
+
 class WorkerMonitor {
 
   /**
@@ -9,6 +11,9 @@ class WorkerMonitor {
   private $workerRowName = 'capable_workers';
 
   /**
+   * 
+
+  /**
    * Method to monitor Gearman workers' status.
    * Sends notification through integrated API(s) (eg. Slack) when the worker has failed.
    *
@@ -16,10 +21,12 @@ class WorkerMonitor {
    *
    */
   public function monitor($data) {
-    foreach ($data as $functionItem) {
-      if ($functionItem[$this->workerRowName] == 0) {
+      foreach ($data as $functionItem) {
+	  if ($functionItem[$this->workerRowName] == 0) {
+              $message = 'Worker failed - Server: ' . $functionItem['server'] . ', Worker: ' . $functionItem['name'];
+              sendSlackMessage($message);
+          }
       }
-    }
   }
 }
 

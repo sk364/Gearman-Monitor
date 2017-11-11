@@ -10,12 +10,13 @@
   "repositories": [
     {
       "type": "composer",
-      "url": "http://packages.zendframework.com/"
+      "url": "https://packages.zendframework.com/"
     }
   ],
   "require": {
     "php": ">=5.3.3",
-    "brianlmoon/net_gearman": "dev-master"
+    "brianlmoon/net_gearman": "dev-master",
+    "maknz/slack": "^1.7"
   },
   "autoload": {
     "classmap": [
