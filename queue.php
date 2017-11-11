@@ -1,6 +1,7 @@
 <?php
 
 require_once('_init.php');
+require_once('monitoring.php');
 
 $options = array();
 $pageUri = "{$_SERVER['PHP_SELF']}?";
@@ -35,5 +36,8 @@ $view->versionData = $serverList->getVersionData();
 $view->functionData = $serverList->getFunctionData();
 $view->errors = $serverList->getErrors();
 $view->pageUri = $pageUri;
+
+$workerMonitor = new WorkerMonitor();
+$workerMonitor->monitor($view->functionData);
 
 $view->display('queue.tpl.php');
