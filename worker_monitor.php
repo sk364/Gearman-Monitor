@@ -8,11 +8,11 @@ $sleepTime = 18;
 
 $serverList = new GA_ServerList(); 
 $serverList->addServers($cfgServers); 
-$functionData = $serverList->getFunctionData();
 
 $workerMonitor = new WorkerMonitor();
 
 while (true) {
+    $functionData = $serverList->getFunctionData();
     $workerMonitor->monitor($functionData);
 
     echo "Sleeping...";
